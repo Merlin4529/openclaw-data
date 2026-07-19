@@ -1,0 +1,21 @@
+# Credenciales - NUNCA commitear
+.env
+.env.*
+*.key
+*credentials*.json
+*token*.json
+client_secret*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Temporales
+*.tmp
+*.log

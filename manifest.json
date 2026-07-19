@@ -1,0 +1,107 @@
+{
+  "updated_utc": "2026-07-19T23:35:16+00:00",
+  "generator": "scripts/build_manifest.py",
+  "datasets": {
+    "processed_base_argentina": {
+      "rows": 480,
+      "complete": 240,
+      "incomplete": 240,
+      "path": "processed/base_argentina.csv",
+      "bytes": 94122
+    },
+    "argentina_2026-clausura_league": {
+      "rows": 1,
+      "cols": 71,
+      "path": "raw/argentina/2026-clausura/league.csv",
+      "bytes": 1787
+    },
+    "argentina_2026-clausura_matches": {
+      "rows": 495,
+      "complete": 255,
+      "incomplete": 240,
+      "date_min": "2026-01-22",
+      "date_max": "2026-11-08",
+      "gw_min": 1,
+      "gw_max": 16,
+      "rows_with_odds": 270,
+      "has_odds": true,
+      "last_gw_with_odds": 16,
+      "rows_with_xg": 480,
+      "has_xg": true,
+      "backtestable_rows": 240,
+      "path": "raw/argentina/2026-clausura/matches.csv",
+      "bytes": 157696
+    },
+    "argentina_2026-clausura_players": {
+      "rows": 946,
+      "cols": 271,
+      "path": "raw/argentina/2026-clausura/players.csv",
+      "bytes": 975231
+    },
+    "argentina_2026-clausura_teams": {
+      "rows": 30,
+      "cols": 293,
+      "matches_played_sum": 510,
+      "path": "raw/argentina/2026-clausura/teams.csv",
+      "bytes": 32633
+    },
+    "laliga_2026-27_league": {
+      "rows": 1,
+      "cols": 71,
+      "path": "raw/laliga/2026-27/league.csv",
+      "bytes": 1699
+    },
+    "laliga_2026-27_matches": {
+      "rows": 380,
+      "complete": 0,
+      "incomplete": 380,
+      "date_min": "2026-08-15",
+      "date_max": "2027-05-30",
+      "gw_min": 1,
+      "gw_max": 38,
+      "rows_with_odds": 0,
+      "has_odds": false,
+      "rows_with_xg": 0,
+      "has_xg": false,
+      "backtestable_rows": 0,
+      "path": "raw/laliga/2026-27/matches.csv",
+      "bytes": 114442
+    },
+    "laliga_2026-27_teams": {
+      "rows": 20,
+      "cols": 293,
+      "matches_played_sum": 0,
+      "path": "raw/laliga/2026-27/teams.csv",
+      "bytes": 19743
+    },
+    "premier_2026-27_league": {
+      "rows": 1,
+      "cols": 71,
+      "path": "raw/premier/2026-27/league.csv",
+      "bytes": 1706
+    },
+    "premier_2026-27_matches": {
+      "rows": 380,
+      "complete": 0,
+      "incomplete": 380,
+      "date_min": "2026-08-21",
+      "date_max": "2027-05-30",
+      "gw_min": 1,
+      "gw_max": 38,
+      "rows_with_odds": 0,
+      "has_odds": false,
+      "rows_with_xg": 0,
+      "has_xg": false,
+      "backtestable_rows": 0,
+      "path": "raw/premier/2026-27/matches.csv",
+      "bytes": 111037
+    },
+    "premier_2026-27_teams": {
+      "rows": 20,
+      "cols": 293,
+      "matches_played_sum": 0,
+      "path": "raw/premier/2026-27/teams.csv",
+      "bytes": 19739
+    }
+  }
+}
