@@ -1,0 +1,65 @@
+{
+  "version": "HARPO 2.1 - xG calibrado",
+  "updated_utc": "2026-07-20T01:43:43+00:00",
+  "bankroll": {
+    "inicial": 25000,
+    "actual": 25000,
+    "moneda": "ARS",
+    "fecha_inicio": "2026-07-23"
+  },
+  "calibracion_xg": {
+    "K_home": 0.8597,
+    "K_away": 0.6376,
+    "liga": "argentina",
+    "n_muestra": 240,
+    "temporada": "2026-apertura",
+    "home_multiplier": 1.0,
+    "home_multiplier_legacy": 1.15,
+    "nota": "FootyStats pre-match xG inflado. K = goles_reales/xG_pre."
+  },
+  "modelo": {
+    "tipo": "Dixon-Coles Poisson bivariado",
+    "rho": -0.05,
+    "matriz_goles": 9,
+    "xg_minimo": 0.3
+  },
+  "mercados": {
+    "habilitados": [
+      "1X"
+    ],
+    "bloqueados": {
+      "over_under_25": "ROI -8.5%",
+      "1X2_home": "ROI -10.5%",
+      "1X2_away": "ROI -22.5%",
+      "X2": "ROI -19.4%",
+      "empate_directo": "no confiable",
+      "combinadas": "requiere validacion"
+    }
+  },
+  "umbrales": {
+    "EV_minimo_argentina": 0.1,
+    "EV_minimo_premier": 0.04,
+    "EV_minimo_laliga": 0.04,
+    "max_picks_jornada": 3,
+    "max_exposicion_jornada_pct": 0.08
+  },
+  "stakes": {
+    "modo": "fijo",
+    "EV>0.15": 750,
+    "EV_0.10_0.15": 500,
+    "EV<0.10": 0
+  },
+  "circuit_breaker": {
+    "bankroll_20000": "stakes a la mitad",
+    "bankroll_17500": "STOP",
+    "3_jornadas_ROI_negativo": "auditoria TANGO"
+  },
+  "metricas_baseline": {
+    "accuracy_1X2_HARPO": 0.408,
+    "accuracy_1X2_mercado": 0.429,
+    "brier": 0.6536,
+    "base_rate_local": 0.417,
+    "base_rate_empate": 0.312,
+    "base_rate_visitante": 0.271
+  }
+}
