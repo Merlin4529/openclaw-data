@@ -1,0 +1,94 @@
+﻿name: OpenClaw Daily Pipeline
+
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: "📥 Clonar repositorio"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: "🐍 Setup Python 3.11"
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: "📦 Instalar dependencias"
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas numpy
+      
+      - name: "🔄 Regenerar manifest.json"
+        run: |
+          if [ -f scripts/build_manifest.py ]; then
+              python3 scripts/build_manifest.py
+          else
+              echo "⚠ build_manifest.py no encontrado"
+          fi
+      
+      - name: "🎯 Ejecutar HARPO v3.0 Modulator"
+        run: |
+          if [ -f scripts/harpo_v3_modulator.py ]; then
+              python3 scripts/harpo_v3_modulator.py
+          else
+              echo "⚠ harpo_v3_modulator.py no encontrado"
+          fi
+      
+      - name: "🤖 Ejecutar D2 Autonomy Protocol"
+        run: |
+          if [ -f scripts/d2_autonomy_protocol.py ]; then
+              python3 scripts/d2_autonomy_protocol.py
+          else
+              echo "⚠ d2_autonomy_protocol.py no encontrado"
+          fi
+      
+      - name: "💰 Ejecutar JOKER Selection Logic"
+        run: |
+          if [ -f scripts/joker_selection_logic.py ]; then
+              python3 scripts/joker_selection_logic.py
+          else
+              echo "⚠ joker_selection_logic.py no encontrado"
+          fi
+      
+      - name: "⚙️ Configurar git"
+        run: |
+          git config --global user.email "openclaw@anthropic.com"
+          git config --global user.name "OpenClaw Automation"
+      
+      - name: "📤 Commit y push a GitHub"
+        run: |
+          git status
+          
+          if git diff --quiet && git diff --cached --quiet; then
+              echo "✅ No hay cambios para commitear"
+          else
+              git add -A
+              
+              TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S UTC')
+              git commit -m "[AUTO] Pipeline ejecutado $TIMESTAMP"
+              git push origin main
+              
+              echo "✅ Push completado"
+          fi
+      
+      - name: "✅ Pipeline completado"
+        if: success()
+        run: |
+          echo "🎉 OpenClaw Daily Pipeline - COMPLETADO EXITOSAMENTE"
+          echo "Timestamp: $(date -u)"
+      
+      - name: "❌ Pipeline fallido"
+        if: failure()
+        run: |
+          echo "⚠️ OpenClaw Daily Pipeline - FALLÓ"
+          echo "Timestamp: $(date -u)"
+          exit 1
